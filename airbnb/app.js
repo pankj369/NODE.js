@@ -2,9 +2,9 @@ const path=require('path'); //core module
 const express = require("express"); //external module
 const  userRouter=require('./routes/userRouter');//local module
 const hostRouter=require('./routes/hostRouter');//local module
-const rootDir=require('./utils/pathUtils');
+const rootDir=require('./routes/utils/pathUtils');
 
-const app = express();
+const app = express(({extended: true}));
 //Middleware to parse form data
 app.use((req, res, next) => {
   console.log(req.url, req.method);
