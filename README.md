@@ -203,4 +203,138 @@ You can download the notes for the playlist from the video description section.
 
 ---
 
+Sure! Here's a revised README file for your Node.js and Express.js learning project, formatted similarly to the previous one I made for you:
+
+markdown
+Copy code
+# Node.js and Express.js Learning Journey
+
+This repository includes summaries, practical examples, and code snippets from various lectures on Node.js and Express.js. Each lecture focuses on a specific topic with explanations and code examples to help you understand core concepts and how to implement them in real-world applications.
+
+## Table of Contents
+
+- [Lecture 10: Middleware in Express.js](#lecture-10-middleware-in-expressjs)
+- [Lecture 11: Working with Query Parameters](#lecture-11-working-with-query-parameters)
+- [Lecture 12: Working with URL Parameters](#lecture-12-working-with-url-parameters)
+- [Lecture 13: HTTP Methods in Express](#lecture-13-http-methods-in-express)
+- [Lecture 14: Serving Static Files](#lecture-14-serving-static-files)
+- [Lecture 15: Introduction to Templating Engines](#lecture-15-introduction-to-templating-engines)
+- [Lecture 16: Error Handling in Express](#lecture-16-error-handling-in-express)
+- [Lecture 17: Connecting Node.js with MongoDB](#lecture-17-connecting-nodejs-with-mongodb)
+
+## Lecture 10: Middleware in Express.js
+
+### Explanation:
+Middleware functions are essential in Express.js for handling requests before reaching route handlers. They can be used for logging, authentication, and modifying request/response objects.
+
+### Code Example:
+```javascript
+const express = require('express');
+const app = express();
+
+// Custom Middleware
+app.use((req, res, next) => {
+  console.log(`Request Method: ${req.method}, Request URL: ${req.url}`);
+  next();
+});
+
+app.get('/', (req, res) => {
+  res.send('Hello from middleware!');
+});
+
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
+Lecture 11: Working with Query Parameters
+Explanation:
+Query parameters are used in URLs to filter, search, or paginate results. They can be accessed using req.query.
+
+Code Example:
+javascript
+Copy code
+app.get('/search', (req, res) => {
+  const { keyword, category } = req.query;
+  res.send(`Search Results for Keyword: ${keyword}, Category: ${category}`);
+});
+Example URL:
+http://localhost:3000/search?keyword=nodejs&category=programming
+
+Lecture 12: Working with URL Parameters
+Explanation:
+URL parameters allow dynamic routing by extracting values from the URL. These parameters are accessed using req.params.
+
+Code Example:
+javascript
+Copy code
+app.get('/users/:id', (req, res) => {
+  const userId = req.params.id;
+  res.send(`User details for ID: ${userId}`);
+});
+Lecture 13: HTTP Methods in Express
+Explanation:
+Express supports several HTTP methods: GET, POST, PUT, DELETE, each for handling different types of requests.
+
+Code Example:
+javascript
+Copy code
+app.post('/create', (req, res) => {
+  res.send('Resource Created!');
+});
+
+app.put('/update/:id', (req, res) => {
+  res.send(`Resource with ID ${req.params.id} Updated!`);
+});
+
+app.delete('/delete/:id', (req, res) => {
+  res.send(`Resource with ID ${req.params.id} Deleted!`);
+});
+Lecture 14: Serving Static Files
+Explanation:
+Express can serve static files (like images, CSS, and JavaScript) using the built-in express.static() middleware.
+
+Code Example:
+javascript
+Copy code
+app.use(express.static('public')); // 'public' folder contains static files
+Lecture 15: Introduction to Templating Engines
+Explanation:
+Templating engines like EJS allow for dynamic rendering of HTML by injecting data into templates.
+
+Code Example:
+javascript
+Copy code
+app.set('view engine', 'ejs');
+app.get('/', (req, res) => {
+  res.render('index', { title: 'Home Page' });
+});
+Lecture 16: Error Handling in Express
+Explanation:
+Error-handling middleware allows you to catch and handle errors gracefully, preventing the server from crashing.
+
+Code Example:
+javascript
+Copy code
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong!');
+});
+Lecture 17: Connecting Node.js with MongoDB
+Explanation:
+Mongoose is used to connect Node.js applications to MongoDB. This section explains how to establish a connection.
+
+Code Example:
+javascript
+Copy code
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost:27017/mydatabase', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(() => {
+  console.log('Connected to MongoDB!');
+}).catch(err => {
+  console.error('Connection failed:', err);
+});
+
+
 This structure covers the progression of learning Node.js. As I continue to learn, I will document additional topics and practical examples to make this repository a comprehensive learning resource.  
