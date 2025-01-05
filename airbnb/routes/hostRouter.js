@@ -6,12 +6,18 @@ const rootDir=require('./utils/pathUtils');//local module
 
 //GET /add-home route
 hostRouter.get("/host/add-home", (req, res, next) => {
-  res.sendFile(path.join(rootDir,'views','addhome.html'));
+  res.render("addhome",{pageTitle: 'Add Home to airbnb'});
 });
+
+const registerHomes=[];
+
 //POST /add-home route
 hostRouter.post("/host/add-home", (req, res, next) => {
-  res.sendFile(path.join(rootDir, 'views', 'home-edit.html'));
+  console.log("Home Registration Successful for:",req.body,req.body.houseName);
+  registerHomes.push({houseName:req.body.houseName});
+  res.render('home-edit',{pageTitle:'Home added Successfully'});
 
 });
 
-module.exports=hostRouter;
+exports.hostRouter=hostRouter;
+exports.registerHomes=registerHomes;//export of registerhomes to homepagere
