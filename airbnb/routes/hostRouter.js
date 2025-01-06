@@ -13,8 +13,8 @@ const registerHomes=[];
 
 //POST /add-home route
 hostRouter.post("/host/add-home", (req, res, next) => {
-  console.log("Home Registration Successful for:",req.body,req.body.houseName);
-  registerHomes.push({houseName:req.body.houseName});
+  console.log("Home Registration Successful for:",req.body);
+  registerHomes.push(req.body);
   res.render('home-edit',{pageTitle:'Home added Successfully'});
 
 });
